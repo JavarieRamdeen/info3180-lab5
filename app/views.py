@@ -22,6 +22,11 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
+@app.route('/secure-page')
+@login_required
+def secure_page():
+    """Render website's secure page."""
+    return render_template('secure_page.html')
 
 @app.route('/about/')
 def about():
@@ -65,7 +70,7 @@ def login():
 
                 # remember to flash a message to the user
                 flash('Logged in successfully.', 'success')
-                return redirect(url_for("/secure-page"))  # they should be redirected to a secure-page route instead
+                return redirect(url_for("secure_page"))  # they should be redirected to a secure-page route instead
             else:
                 flash('Username or Password is incorrect.', 'danger')
 
